@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #282c34;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    text-decoration: none;
+    /* Optional: removes underline */
+    color: inherit;
+    /* Keeps text color */
+    cursor: pointer;
+    /* Ensures clickable behavior */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+}
+
+.active {
+    font-weight: bold;
+}
