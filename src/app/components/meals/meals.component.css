@@ -1,0 +1,19 @@
+.meals-container {
+    padding: 20px;
+}
+
+.meal-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.meal-card h3 {
+    margin: 0;
+}
+
+.meal-card p {
+    margin: 5px 0;
+}

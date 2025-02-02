@@ -1,1 +1,29 @@
-<p>meals works!</p>
+<h2>Meals</h2>
+
+<!-- Add Meal Form -->
+<div class="meal-form">
+    <input type="text" [(ngModel)]="newMeal.name" placeholder="Meal Name">
+    <input type="text" [(ngModel)]="newMeal.description" placeholder="Description">
+    <input type="number" [(ngModel)]="newMeal.calories" placeholder="Calories">
+    <button (click)="addMeal()">Add Meal</button>
+</div>
+
+<div *ngFor="let meal of meals" class="meal-card">
+    <!-- Edit Mode -->
+    <div *ngIf="editMeal && editMeal.id === meal.id">
+        <input type="text" [(ngModel)]="editMeal.name">
+        <input type="text" [(ngModel)]="editMeal.description">
+        <input type="number" [(ngModel)]="editMeal.calories">
+        <button (click)="saveMeal()">Save</button>
+        <button (click)="editMeal = null">Cancel</button>
+    </div>
+
+    <!-- Display Mode -->
+    <div *ngIf="!editMeal || editMeal.id !== meal.id">
+        <h3>{{ meal.name }}</h3>
+        <p><strong>Description:</strong> {{ meal.description }}</p>
+        <p><strong>Calories:</strong> {{ meal.calories }} kcal</p>
+        <button (click)="startEdit(meal)">Edit</button>
+        <button (click)="deleteMeal(meal.id)">Delete</button>
+    </div>
+</div>
