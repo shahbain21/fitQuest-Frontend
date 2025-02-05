@@ -4,21 +4,28 @@ import { MealService } from '../../services/meal.service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
-
-
+interface Meal {
+  id?: number;
+  name: string;
+  mealType: string;
+  calories: number;
+  protein?: number;
+  fat?: number;
+  carbs?: number;
+}
 @Component({
   selector: 'app-meals',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, FormsModule], // Add CommonModule to imports
+  imports: [CommonModule, NgFor, NgIf, FormsModule],
   templateUrl: './meals.component.html',
   styleUrls: ['./meals.component.css']
 })
 export class MealsComponent implements OnInit {
-
   meals: any[] = [];
-  newMeal = { name: '', description: '', calories: 0 };
-  editMeal: any = null;
+  mealTypes: string[] = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
+  newMeal = { name: '', mealType: '', calories: 0, protein: undefined, fat: undefined, carbs: undefined};
+  editMeal: Meal | null = null;
+
 
   constructor(private mealService: MealService) {}
 
@@ -33,22 +40,21 @@ export class MealsComponent implements OnInit {
   }
 
   addMeal(): void {
-    if (!this.newMeal.name || !this.newMeal.description || this.newMeal.calories <= 0) return;
+    if (!this.newMeal.name.trim() || !this.newMeal.mealType || this.newMeal.calories <= 0) return;
 
     this.mealService.addMeal(this.newMeal).subscribe(() => {
       this.loadMeals();
-      this.newMeal = { name: '', description: '', calories: 0 };
+      this.newMeal = { name: '', mealType: '', calories: 0, protein: undefined, fat: undefined, carbs: undefined };
     });
   }
-
-  startEdit(meal: any): void {
-    this.editMeal = { ...meal };
+  startEdit(meal: Meal): void {
+    this.editMeal = { ...meal }; 
   }
 
   saveMeal(): void {
-    if (!this.editMeal) return;
+    if (!this.editMeal || !this.editMeal.name.trim() || !this.editMeal.mealType || this.editMeal.calories <= 0) return;
 
-    this.mealService.updateMeal(this.editMeal.id, this.editMeal).subscribe(() => {
+    this.mealService.updateMeal(this.editMeal.id!, this.editMeal).subscribe(() => {
       this.loadMeals();
       this.editMeal = null;
     });
