@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 interface Meal {
   id?: number;
-  name: string;
+  mealName: string;
   description?: string;
   calories: number;
   protein?: number;

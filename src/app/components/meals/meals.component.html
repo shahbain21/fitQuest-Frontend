@@ -2,7 +2,7 @@
 
 <!-- Add Meal Form -->
 <div class="meal-form">
-    <input type="text" [(ngModel)]="newMeal.name" placeholder="Meal Name">
+    <input type="text" [(ngModel)]="newMeal.mealName" placeholder="Meal Name">
     <select [(ngModel)]="newMeal.mealType">
         <option value="">Select Meal Type</option>
         <option *ngFor="let type of mealTypes" [value]="type">{{ type }}</option>
@@ -17,7 +17,7 @@
 <div *ngFor="let meal of meals" class="meal-card">
     <!-- Edit Mode -->
     <div *ngIf="editMeal && editMeal.id === meal.id">
-        <input type="text" [(ngModel)]="editMeal.name">
+        <input type="text" [(ngModel)]="editMeal.mealName">
         <select [(ngModel)]="editMeal.mealType">
             <option *ngFor="let type of mealTypes" [value]="type">{{ type }}</option>
         </select>
@@ -31,7 +31,7 @@
 
     <!-- Display Mode -->
     <div *ngIf="!editMeal || editMeal.id !== meal.id">
-        <h3>{{ meal.name }}</h3>
+        <h3>{{ meal.mealName }}</h3>
         <p><strong>Meal Type:</strong> {{ meal.mealType }}</p>
         <p><strong>Calories:</strong> {{ meal.calories }} kcal</p>
         <p *ngIf="meal.protein !== undefined"><strong>Protein:</strong> {{ meal.protein }} g</p>

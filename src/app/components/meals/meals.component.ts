@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 interface Meal {
   id?: number;
-  name: string;
+  mealName: string;
   mealType: string;
   calories: number;
   protein?: number;
@@ -23,7 +23,7 @@ interface Meal {
 export class MealsComponent implements OnInit {
   meals: any[] = [];
   mealTypes: string[] = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
-  newMeal = { name: '', mealType: '', calories: 0, protein: undefined, fat: undefined, carbs: undefined};
+  newMeal = { mealName: '', mealType: '', calories: 0, protein: undefined, fat: undefined, carbs: undefined};
   editMeal: Meal | null = null;
 
 
@@ -40,11 +40,11 @@ export class MealsComponent implements OnInit {
   }
 
   addMeal(): void {
-    if (!this.newMeal.name.trim() || !this.newMeal.mealType || this.newMeal.calories <= 0) return;
+    if (!this.newMeal.mealName.trim() || !this.newMeal.mealType || this.newMeal.calories <= 0) return;
 
     this.mealService.addMeal(this.newMeal).subscribe(() => {
       this.loadMeals();
-      this.newMeal = { name: '', mealType: '', calories: 0, protein: undefined, fat: undefined, carbs: undefined };
+      this.newMeal = { mealName: '', mealType: '', calories: 0, protein: undefined, fat: undefined, carbs: undefined };
     });
   }
   startEdit(meal: Meal): void {
@@ -52,7 +52,7 @@ export class MealsComponent implements OnInit {
   }
 
   saveMeal(): void {
-    if (!this.editMeal || !this.editMeal.name.trim() || !this.editMeal.mealType || this.editMeal.calories <= 0) return;
+    if (!this.editMeal || !this.editMeal.mealName.trim() || !this.editMeal.mealType || this.editMeal.calories <= 0) return;
 
     this.mealService.updateMeal(this.editMeal.id!, this.editMeal).subscribe(() => {
       this.loadMeals();
