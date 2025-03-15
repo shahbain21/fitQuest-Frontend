@@ -1,8 +1,25 @@
 <div class="profile-container">
     <h1>Your Profile</h1>
+
     <div class="profile-info">
-        <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> johndoe&#64;example.com</p>
-        <p><strong>Bio:</strong> Add your bio here.</p>
+        <img src="profile-placeholder.png" alt="Profile Picture" class="profile-picture">
+
+        <div class="profile-details">
+            <p><strong>Name:</strong> <span>{{ user.name }}</span></p>
+            <p><strong>Email:</strong> <span>{{ user.email }}</span></p>
+            <p><strong>Bio:</strong> <span>{{ user.bio || 'No bio available.' }}</span></p>
+        </div>
     </div>
+
+    <button class="edit-profile-btn">Edit Profile</button>
+
+    <div class="profile-edit-form">
+        <input type="text" placeholder="Name" [(ngModel)]="user.name">
+        <input type="email" placeholder="Email" [(ngModel)]="user.email">
+        <textarea placeholder="Bio" [(ngModel)]="user.bio"></textarea>
+
+        <button class="save-profile-btn">Save</button>  
+
+        <button class="cancel-profile-btn">Cancel</button>
+        
 </div>

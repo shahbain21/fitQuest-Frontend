@@ -1,1 +1,24 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <header>
+        <h1>Welcome, {{ user.name }}!</h1>
+    </header>
+
+    <div class="dashboard-grid">
+        <div class="card stat-card">
+            <h3>Total Calories Today</h3>
+            <p>{{ totalCalories }} kcal</p>
+        </div>
+
+        <div class="card stat-card">
+            <h3>Meals Logged</h3>
+            <p>{{ meals.length }}</p>
+        </div>
+
+        <div class="card activity-card">
+            <h3>Recent Meals</h3>
+            <ul>
+                <li *ngFor="let meal of meals | slice:0:3">{{ meal.mealName }} - {{ meal.calories }} kcal</li>
+            </ul>
+        </div>
+    </div>
+</div>
